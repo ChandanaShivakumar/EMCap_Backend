@@ -1,0 +1,65 @@
+//Assigning the feedback
+
+    const handlesubmit5 = (e) => {
+
+        e.preventDefault();
+
+     
+
+        // Create a new FormData object
+
+        const formdata = new FormData();
+
+     
+
+        // Append form fields to the FormData object
+
+        formdata.append('fresher_id', edata);
+
+        formdata.append('manager_id', mgid);
+
+        formdata.append('feedback', feedback);
+
+        formdata.append('rating', rating);
+
+        // formdata.append('created_at', created_at);
+
+     
+
+        // Append the file to the FormData object
+
+        formdata.append('file', fileInput);
+
+     
+
+        if (IsValidate6()) {
+
+          fetch('http://127.0.0.1:8000/api/feedback/', {
+
+            method: 'POST',
+
+            body: formdata
+
+          })
+
+            .then((res) => {
+
+              toast.success('Feedback given successfully');
+
+              setTimeout(() => {
+
+                setmodal(false);
+
+              }, 5000);
+
+            })
+
+            .catch((err) => {
+
+              toast('Failed: ' + err.message);
+
+            });
+
+        }
+
+      };
